@@ -9,43 +9,39 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- tailwind css -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
 </head>
 <body>
 
-    <header>
+    <header class="text-center my-4">
         <h1 class="text-3xl font-bold">My To-Do List</h1>
     </header>
 
-    <main>
-        <section class ="todo-app my-4">
-            <input type="text" class="border rounded p-2" id="todo-input" placeholder="Add new task..."/>
-            <input type="date" class="border rounded p-2" id="todo-date" placeholder="Select date..."/>
-            <button class="bg-blue-400 rounded p-2" onclick="addTask()">Add</button>
-            <ul id="todo-list"></ul></button>
+    <main class="max-w-xl mx-auto">
+        <!-- Input Task -->
+        <section class="todo-app my-4 flex gap-2">
+            <input type="text" class="border rounded p-2 flex-1" id="todo-input" placeholder="Add new task..."/>
+            <input type="date" class="border rounded p-2" id="todo-date"/>
+            <button class="bg-blue-400 text-white rounded p-2" onclick="addTask()">Add</button>
         </section>
 
+        <!-- Filter & Delete -->
         <section class="flex justify-between my-4">
-            <button class="bg-blue-400 rounded p-2" id="filter-btn">Filter</button>
-            <button class="bg-red-500 text-white rounded p-2 " onclick="deleteAll()">Delete All Task</button>
+            <button class="bg-blue-400 text-white rounded p-2" id="filter-btn">Filter</button>
+            <button class="bg-red-500 text-white rounded p-2" onclick="deleteAll()">Delete All Task</button>
         </section>
 
+        <!-- List Task -->
         <section>
-            <h2 class="text-2xl"> List of Tasks </h2>
+            <h2 class="text-2xl mb-2">List of Tasks</h2>
             <ul id="task-list">
                 <li>No Tasks Added Yet</li>
-
             </ul>
-
         </section>
-
     </main>
 
-    <footer>
+    <footer class="text-center mt-8">
         <p class="text-sm">&copy; 2025 Rii. - Todo List App</p>
-
     </footer>
-    
 
     <!-- js eksternal -->
     <script src="/js/script.js"></script>

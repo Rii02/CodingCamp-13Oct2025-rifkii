@@ -12,32 +12,50 @@ function addTask() {
             date: dateInput.value,
         }
         taskDb.push(newTask);
-        
-        renderTasks();
+        taskInput.value = '';
+        dateInput.value = '';
+        renderTasks(taskDb);
     }
 }
 
 // Render Function
-function renderTasks() {
+function renderTasks(tasks) {
     const taskList = document.getElementById("task-list");
     taskList.innerHTML = '';
 
-    taskDb.forEach((taskObj, index) => {
+    if (tasks.length === 0) {
+        taskList.innerHTML = '<li>No Tasks Found</li>';
+        return;
+    }
+
+    tasks.forEach((taskObj, index) => {
         taskList.innerHTML += `
             <li>${taskObj.task} - ${taskObj.date}</li>`;
-        
-    }); 
-
+    });
 }
 
 // Delete Function
 function deleteAll() {
     taskDb = [];
-    renderTasks();
+    renderTasks(taskDb);
 }
 
-// Filter Function
-function filter() {}
+//  Filter Function
+function filter() {
+    // Ambil keyword task dan tanggal dari user
+    const keyword = prompt("Filter by task (kosongkan jika tidak perlu):")?.toLowerCase().trim();
+    const filterDate = prompt("Filter by date (YYYY-MM-DD) (kosongkan jika tidak perlu):")?.trim();
+
+    // Lakukan filter berdasarkan input
+    const filteredTasks = taskDb.filter(taskObj => {
+        const matchKeyword = keyword === '' || taskObj.task.toLowerCase().includes(keyword);
+        const matchDate = filterDate === '' || taskObj.date === filterDate;
+        return matchKeyword && matchDate;
+    });
+
+    // Render hasil filter
+    renderTasks(filteredTasks);
+}
 
 // Validation Function
 function validateInput(task, date) {
@@ -48,3 +66,5 @@ function validateInput(task, date) {
     return true;
 }
 
+// 🪄 Event listener untuk tombol filter
+document.getElementById("filter-btn").addEventListener("click", filter);
