@@ -4,46 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List - Rii.</title>
-
-    <!-- css eksternal -->
+    
+    <!-- CSS Eksternal -->
     <link rel="stylesheet" href="/css/style.css">
-    <!-- tailwind css -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-    <header class="text-center my-4">
-        <h1 class="text-3xl font-bold">My To-Do List</h1>
+    <header class="text-center mb-8">
+        <h1 class="header-title text-5xl md:text-6xl">My To-Do List</h1>
     </header>
 
-    <main class="max-w-xl mx-auto">
+    <main class="glass-card mx-auto p-8">
         <!-- Input Task -->
-        <section class="todo-app my-4 flex gap-2">
-            <input type="text" class="border rounded p-2 flex-1" id="todo-input" placeholder="Add new task..."/>
-            <input type="date" class="border rounded p-2" id="todo-date"/>
-            <button class="bg-blue-400 text-white rounded p-2" onclick="addTask()">Add</button>
+        <section class="mb-6">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input 
+                    type="text" 
+                    class="input-field flex-1" 
+                    id="todo-input" 
+                    placeholder="What do you need to do today?"
+                />
+                <input 
+                    type="date" 
+                    class="input-field w-full sm:w-auto" 
+                    id="todo-date"
+                />
+                <button class="btn-primary w-full sm:w-auto" onclick="addTask()">
+                    Add Task
+                </button>
+            </div>
         </section>
 
         <!-- Filter & Delete -->
-        <section class="flex justify-between my-4">
-            <button class="bg-blue-400 text-white rounded p-2" id="filter-btn">Filter</button>
-            <button class="bg-red-500 text-white rounded p-2" onclick="deleteAll()">Delete All Task</button>
+        <section class="flex flex-col sm:flex-row justify-between gap-3 mb-6 btn-group">
+            <div class="flex gap-2">
+                <button class="btn-secondary" id="filter-btn">
+                    Filter Tasks
+                </button>
+                <button class="btn-secondary" id="refresh-btn" style="display: none; background: #10b981;">
+                    Refresh Filter
+                </button>
+            </div>
+            <button class="btn-danger" onclick="deleteAll()">
+                Delete All
+            </button>
         </section>
 
-        <!-- List Task -->
+        <!-- Task Table -->
         <section>
-            <h2 class="text-2xl mb-2">List of Tasks</h2>
-            <ul id="task-list">
-                <li>No Tasks Added Yet</li>
-            </ul>
+            <h2 class="section-title">Your Tasks</h2>
+            <div class="overflow-x-auto">
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Task</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="task-list">
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                No tasks added yet
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
-    <footer class="text-center mt-8">
-        <p class="text-sm">&copy; 2025 Rii. - Todo List App</p>
+    <footer>
+        <p>&copy; 2025 Rii. - Todo List App</p>
     </footer>
 
-    <!-- js eksternal -->
+    <!-- JS Eksternal -->
     <script src="/js/script.js"></script>
 </body>
 </html>
